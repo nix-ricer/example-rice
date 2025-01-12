@@ -1,6 +1,4 @@
 {
-  # If you intend to include nixos system configuration, use this flake, otherwise start your flake using only the contents of the ./home directory.
-  # Don't include any system configuration unique to your own system in your rice module.
 
   inputs = {
 
@@ -17,8 +15,9 @@
 
   outputs = { self, nixpkgs, home-manager, nix-ricer, ... }: {
 
-    nixosModules.default = ./. self;
-    homeManagerModules.default = ./home self;
+    homeManagerModules.rice = ./home self;
+    homeManagerModules.default = self.homeManagerModules.rice;
 
   };
+
 }
